@@ -21,8 +21,8 @@ import {data} from '../assets/data';
 import {BUTTON_HEIGHT} from '../constants/segmentedControl';
 
 export interface GraphState {
-  next: number;
   current: number;
+  previous: number;
 }
 
 type SegmentedControlProps = {
@@ -39,22 +39,22 @@ export const SegmentedControl: React.FC<SegmentedControlProps> = ({
   const buttonWidth = (width - 16 * 2) / 3;
 
   const transform = useComputedValue(() => {
-    const {current, next} = state.current;
+    const {previous, current} = state.current;
 
     return [
       {
         translateX: mix(
           transition.current,
+          previous * buttonWidth,
           current * buttonWidth,
-          next * buttonWidth,
         ),
       },
     ];
   }, [state, transition]);
 
   const onPress = (index: number) => {
-    state.current.current = state.current.next;
-    state.current.next = index;
+    state.current.previous = state.current.current;
+    state.current.current = index;
     transition.current = 0;
     runSpring(transition, 1, {
       damping: 100,

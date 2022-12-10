@@ -29,6 +29,19 @@ export const getBarX = (dataPoints: number, barIndex: number) => {
   );
 };
 
+export const getBarX2 = (
+  dataPoints: number,
+  barIndex: number,
+  width: number,
+) => {
+  const totalSpaceWidth = CANVA_WIDTH * BAR_SPACING_TOTAL_WIDTH_RATE;
+  return (
+    CANVAS_H_MARGINS +
+    barIndex * width +
+    (barIndex * totalSpaceWidth) / (dataPoints - 1)
+  );
+};
+
 // export const buildBarChart = (
 //   dataPoints: nu
 // )
