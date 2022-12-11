@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {
   LinearGradient,
   RoundedRect,
@@ -20,14 +20,8 @@ type BarProps = {
 };
 
 export const Bar: React.FC<BarProps> = ({width, barData, index}) => {
-  const selected = Selector(barData, v => v[index]);
+  const selected = Selector(barData, v => v[index]).value.current[index];
 
-  useEffect(() => {
-    if (index === 0) {
-      console.log('selected: ', selected.selector([]));
-      console.log('selected: ', selected.value.current[index]);
-    }
-  }, [index, selected]);
   return (
     <RoundedRect
       x={Selector(barData, v => v[index].x)}
@@ -35,11 +29,11 @@ export const Bar: React.FC<BarProps> = ({width, barData, index}) => {
       width={width}
       height={Selector(barData, v => v[index].height)}
       r={10}>
-      {/* <LinearGradient
-        start={vec(Selector(barData, v => v[index].x).selector(), -height)}
-        end={vec(x + width.current, 0)}
+      <LinearGradient
+        start={vec(selected.x, selected.y)}
+        end={vec(selected.x, selected.y + selected.height)}
         colors={['blue', 'cyan']}
-      /> */}
+      />
     </RoundedRect>
   );
 };

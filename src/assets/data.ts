@@ -1,7 +1,7 @@
 export const data = [
   {
     period: '7d',
-    data: Array(20)
+    data: Array(7)
       .fill(0)
       .map(() => Math.random() * 100),
   },
@@ -13,7 +13,7 @@ export const data = [
   },
   {
     period: '12m',
-    data: Array(7)
+    data: Array(12)
       .fill(0)
       .map(() => Math.random() * 100),
   },
