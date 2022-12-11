@@ -30,8 +30,8 @@ export const Bar: React.FC<BarProps> = ({width, barData, index}) => {
       height={Selector(barData, v => v[index].height)}
       r={10}>
       <LinearGradient
-        start={vec(selected.x, selected.y)}
-        end={vec(selected.x, selected.y + selected.height)}
+        start={vec(selected.x, selected.height)}
+        end={vec(selected.x + width.current, selected.y + selected.height)}
         colors={['blue', 'cyan']}
       />
     </RoundedRect>

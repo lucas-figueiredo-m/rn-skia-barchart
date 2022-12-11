@@ -76,10 +76,14 @@ const BarChartScreen: React.FC = () => {
     });
   }, [state, transition, barWidth]);
 
+  const rendererArray = new Array(
+    data.reduce((prev, curr) => Math.max(prev, curr.data.length), -1),
+  ).fill(0);
+
   return (
     <SafeAreaView style={styles.root}>
       <Canvas style={styles.canvas}>
-        {data[state.current.current].data.map((_, index) => (
+        {rendererArray.map((_, index) => (
           <Bar key={index} width={barWidth} barData={barData} index={index} />
         ))}
       </Canvas>
