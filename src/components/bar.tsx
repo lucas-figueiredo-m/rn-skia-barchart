@@ -1,46 +1,45 @@
-import React from 'react';
-import {LinearGradient, Path, vec} from '@shopify/react-native-skia';
-import {useWindowDimensions} from 'react-native';
-import {line as lineGen, curveLinear} from 'd3';
+import React, {useEffect} from 'react';
+import {
+  LinearGradient,
+  RoundedRect,
+  Selector,
+  SkiaValue,
+  vec,
+} from '@shopify/react-native-skia';
 
-type BarProps = {
-  width: number;
-  height: number;
+export type BarData = {
   x: number;
+  y: number;
+  height: number;
 };
 
-const line = lineGen()
-  .curve(curveLinear)
-  .x(([x]) => x)
-  .y(([, y]) => y);
+type BarProps = {
+  width: SkiaValue<number>;
+  index: number;
+  barData: SkiaValue<BarData[]>;
+};
 
-// const lineGenerator = d3
-//   .line()
-//   .x(([x]) => x)
-//   .y(([, y]) => y);
+export const Bar: React.FC<BarProps> = ({width, barData, index}) => {
+  const selected = Selector(barData, v => v[index]);
 
-export const Bar: React.FC<BarProps> = ({width, height, x}) => {
-  const {width: totalHeight} = useWindowDimensions();
-  const d3Path = line([
-    [x, 0],
-    [x + width, 0],
-    [x + width, -height],
-    [x, -height],
-    [x, 0],
-  ]);
-  // const path = `M 0 0 H ${width} V ${-height} H 0 V 0 Z`;
+  useEffect(() => {
+    if (index === 0) {
+      console.log('selected: ', selected.selector([]));
+      console.log('selected: ', selected.value.current[index]);
+    }
+  }, [index, selected]);
   return (
-    <Path
-      style="fill"
-      strokeCap="round"
-      strokeJoin="round"
-      path={d3Path as string}
-      transform={[{translateY: totalHeight}]}>
-      <LinearGradient
-        start={vec(x, -height)}
-        end={vec(x + width, 0)}
+    <RoundedRect
+      x={Selector(barData, v => v[index].x)}
+      y={Selector(barData, v => v[index].y)}
+      width={width}
+      height={Selector(barData, v => v[index].height)}
+      r={10}>
+      {/* <LinearGradient
+        start={vec(Selector(barData, v => v[index].x).selector(), -height)}
+        end={vec(x + width.current, 0)}
         colors={['blue', 'cyan']}
-      />
-    </Path>
+      /> */}
+    </RoundedRect>
   );
 };

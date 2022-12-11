@@ -20,16 +20,7 @@ export const getBarWidth = (dataPoints: number): number => {
   return totalBarWidth / dataPoints;
 };
 
-export const getBarX = (dataPoints: number, barIndex: number) => {
-  const totalSpaceWidth = CANVA_WIDTH * BAR_SPACING_TOTAL_WIDTH_RATE;
-  return (
-    CANVAS_H_MARGINS +
-    barIndex * getBarWidth(dataPoints) +
-    (barIndex * totalSpaceWidth) / (dataPoints - 1)
-  );
-};
-
-export const getBarX2 = (
+export const getBarX = (
   dataPoints: number,
   barIndex: number,
   width: number,
