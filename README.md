@@ -10,6 +10,10 @@
 - [x] Typescript
 - [x] React Native Skia (@shopify/react-native-skia)
 
+### Objectives
+
+The main objective of this repository is to present the product of the hands-on study and testing using the @shopify/react-native-skia
+
 ### Environment setup
 
 Follow the setup instructions on [React Native webpage](https://reactnative.dev/docs/environment-setup). Make sure you're setting up the React Native CLI, not hte expo
