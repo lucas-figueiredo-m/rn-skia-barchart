@@ -75,7 +75,7 @@ export const SegmentedControl: React.FC<SegmentedControlProps> = ({
               <LinearGradient
                 start={vec(0, 0)}
                 end={vec(buttonWidth, BUTTON_HEIGHT)}
-                colors={['blue', 'cyan']}
+                colors={['#2c7273', 'cyan']}
               />
             </RoundedRect>
           </Group>

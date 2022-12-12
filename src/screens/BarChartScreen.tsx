@@ -97,12 +97,12 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'red',
+    backgroundColor: '#3A3A3B',
   },
   canvas: {
     width: CANVA_WIDTH,
     height: CANVA_HEIGHT,
-    backgroundColor: 'white',
+    backgroundColor: '#484344',
   },
 });
 

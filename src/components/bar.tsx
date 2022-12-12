@@ -32,7 +32,7 @@ export const Bar: React.FC<BarProps> = ({width, barData, index}) => {
       <LinearGradient
         start={vec(selected.x, selected.height)}
         end={vec(selected.x + width.current, selected.y + selected.height)}
-        colors={['blue', 'cyan']}
+        colors={['#02f6fa', '#2e8b8c']}
       />
     </RoundedRect>
   );
