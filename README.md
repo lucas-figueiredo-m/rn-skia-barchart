@@ -1,4 +1,4 @@
-# React Native Reddit
+# React Native Skia Bar Chart
 
 <div align="center">
   <img src="./screenshots/animation.gif" width="25%" height="25%" alt="print-app">
